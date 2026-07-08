@@ -1,7 +1,10 @@
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_rule_1_8_2 }}
+---
+
+{{ if not .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_level_1 }}
+    {{ if .Vars.rhel9cis_rule_1_8_2 }}
 command:
- gdm_profile_banner:
+  gdm_profile_banner:
     title: 1.8.2 | Ensure GDM login banner is configured
     exec: cat /etc/dconf/profile/gdm
     exit-status: 0
@@ -9,11 +12,10 @@ command:
     - '/^user-db:user/'
     - '/^system-db:user/'
     - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults/'
-    - "/^banner-message-test=\'{{ .Vars.rhel9cis_warning_banner }}\'/"
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.2
       CISv8:
       - 4.1
@@ -30,16 +32,17 @@ command:
     stdout:
     - '/^banner-message-enable=true/'
     - '!/^banner-message-enable=false/'
-    - "/^banner-message-test=\'{{ .Vars.rhel9cis_warning_banner }}\'/"
+    - '/^banner-message-text=\'{{ .Vars.rhel9cis_warning_banner }}\'/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.2
       CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+    {{ end }}
   {{ end }}
 {{ end }}

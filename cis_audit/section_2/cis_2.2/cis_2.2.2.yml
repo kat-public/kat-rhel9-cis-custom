@@ -1,18 +1,24 @@
-{{ if not .Vars.rhel9cis_xwindows_required }}
-  {{ if .Vars.rhel9cis_rule_2_2_2 }}
+---
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if not .Vars.rhel9cis_openldap_clients_required }}
+    {{ if .Vars.rhel9cis_rule_2_2_2 }}
 package:
-  xorg-x11-server-common:
-    title: 2.2.2 | Ensure X11 Server components are not installed 
+  openldap-clients:
+    title: 2.2.2 | Ensure LDAP client is not installed
     installed: false
+    name: openldap-clients
     meta:
-      server: 1
-      workstation: NA
-      CIS_ID: 
+      server: 2
+      workstation: 2
+      CIS_ID:
       - 2.2.2
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+    {{ end }}
   {{ end }}
 {{ end }}
