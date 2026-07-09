@@ -1,0 +1,4 @@
+- hosts: local
+  become: true
+  roles:
+    - ubuntu24_cis

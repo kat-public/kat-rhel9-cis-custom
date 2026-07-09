@@ -1,0 +1,4 @@
+- hosts: local
+  become: true
+  roles:
+    - al2023_cis
