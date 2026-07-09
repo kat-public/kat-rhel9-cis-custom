@@ -1,7 +1,7 @@
 rhel9cis_level_1: true
 rhel9cis_level_2: true
 skip_reboot: true
-run_audit: false
+run_audit: true
 rhel9cis_set_boot_pass: false
 system_is_ec2: true
 rhel9cis_authselect_custom_profile_name: "rhel9-cis-hardened"
